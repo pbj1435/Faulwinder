@@ -3,7 +3,7 @@
 *The lazy watch winder.* (**"FOWL-vin-der"** — *faul* is German for "lazy," and a wink at the
 **FAULHABER** motor inside. It deep-sleeps for years and wakes only to wind.)
 
-A battery-powered automatic watch winder — a low-cost SwissKubik clone built on a Seeed
+A battery-powered automatic watch winder — built on a Seeed
 XIAO nRF52840, a FAULHABER coreless geared motor, and a DRV8833 driver, configured over
 Bluetooth LE. Goal: **years of runtime on one 3.2V LiFePO4 cell.**
 
