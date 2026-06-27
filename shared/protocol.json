@@ -1,0 +1,17 @@
+{
+  "$comment": "CANONICAL BLE contract for Faulwinder. Edit ONLY here, then run `node shared/gen.mjs` to regenerate the firmware header and the webapp module. Never hand-edit the generated files.",
+  "deviceName": "Faulwinder",
+  "baseUuid": "9a8bXXXX-7c3e-4f1a-9b2d-1f6c0e5a7d10",
+  "service": { "short": "0001", "key": "config", "desc": "Faulwinder configuration service" },
+  "characteristics": [
+    { "key": "turns_per_day",  "short": "0002", "type": "uint16", "props": ["read", "write"], "default": 650,  "min": 0, "max": 2000, "desc": "Daily winding target (turns)" },
+    { "key": "direction_mode", "short": "0003", "type": "enum",   "props": ["read", "write"], "default": "BOTH", "values": ["BOTH", "CW", "CCW"], "desc": "Winding direction" },
+    { "key": "speed",          "short": "0004", "type": "uint8",  "props": ["read", "write"], "default": 100,  "min": 10, "max": 100, "desc": "Motor PWM duty (%)" },
+    { "key": "enabled",        "short": "0005", "type": "bool",   "props": ["read", "write"], "default": true, "desc": "Winding on/off" },
+    { "key": "calibration",    "short": "0006", "type": "uint16", "props": ["read", "write"], "default": 0, "min": 0, "max": 65000, "desc": "Measured output speed in centi-RPM (RPM x100); 0 = use theoretical from GEAR_RATIO" },
+    { "key": "status",         "short": "0007", "type": "uint8",  "props": ["read", "notify"], "readOnly": true, "desc": "Runtime status code (0 idle, 1 winding, 2 sleeping, 3 fault)" }
+  ],
+  "standard": {
+    "battery": { "service": "0x180F", "characteristic": "0x2A19", "desc": "Standard BLE Battery Service / Battery Level (uint8 %)" }
+  }
+}

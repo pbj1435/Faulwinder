@@ -1,0 +1,27 @@
+# Build artifacts
+build/
+.build/
+*.uf2
+*.hex
+*.bin
+*.elf
+
+# PlatformIO
+.pio/
+
+# Arduino IDE
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Claude Code local (per-user) settings
+.claude/settings.local.json
+
+# Node
+node_modules/

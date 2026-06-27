@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faulwinder — Config</title>
+<style>
+  :root{color-scheme:dark;}
+  body{font-family:system-ui,-apple-system,sans-serif;max-width:480px;margin:40px auto;padding:0 16px;
+  background:#10141a;color:#e6eaf0;}
+  h1{font-size:20px;} button{font-size:15px;padding:10px 16px;border-radius:8px;border:1px solid #2f8fb0;
+  background:#1f6f8b;color:#fff;cursor:pointer;} button:hover:not(:disabled){background:#2f8fb0;}
+  button:disabled{opacity:.45;cursor:not-allowed;} .row{margin:14px 0;}
+  label{display:block;font-size:13px;margin-bottom:4px;color:#9aa6b6;}
+  input,select{width:100%;padding:8px;font-size:15px;border:1px solid #2a3340;border-radius:6px;
+  background:#1a2029;color:#e6eaf0;}
+  input:disabled,select:disabled{opacity:.6;}
+  #status{font-size:13px;color:#9aa6b6;margin-top:8px;}
+</style>
+</head>
+<body>
+  <h1>Faulwinder</h1>
+  <p>Config over Bluetooth. Requires Chrome/Edge (desktop or Android), or Bluefy on iOS.</p>
+
+  <button id="connect">Connect</button>
+  <div id="status">Not connected.</div>
+
+  <!-- TODO (slice 6): bind these to BLE characteristics once the GATT service exists (slice 3) -->
+  <div class="row"><label>Turns per day</label><input id="tpd" type="number" value="650" disabled></div>
+  <div class="row"><label>Direction</label>
+    <select id="dir" disabled><option>Both</option><option>CW</option><option>CCW</option></select></div>
+  <div class="row"><label>Battery</label><input id="batt" value="—" disabled></div>
+  <div class="row"><button id="save" disabled>Save to winder</button></div>
+
+<script>
+// SKELETON — implement in slice 6, after the firmware GATT service (slice 3) defines the UUIDs.
+//
+// Web Bluetooth notes:
+//  - Must be served over HTTPS or opened as file:// (secure context required).
+//  - navigator.bluetooth.requestDevice({ filters:[{ services:[WINDER_SERVICE_UUID] }] })
+//  - connect -> getPrimaryService -> getCharacteristic -> read/write values.
+//  - Battery uses the standard 0x180F service / 0x2A19 characteristic.
+//
+// const WINDER_SERVICE_UUID = "________";   // <-- match firmware
+// const CHAR_TPD = "________"; const CHAR_DIR = "________"; ...
+
+document.getElementById('connect').addEventListener('click', async () => {
+  const status = document.getElementById('status');
+  try {
+    status.textContent = "Requesting device…";
+    // TODO: const device = await navigator.bluetooth.requestDevice({ ... });
+    // TODO: connect, read current settings into the fields, enable inputs + Save.
+    status.textContent = "TODO: implement BLE connect (slice 6).";
+  } catch (e) {
+    status.textContent = "Error: " + e;
+  }
+});
+</script>
+</body>
+</html>

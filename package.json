@@ -1,0 +1,12 @@
+{
+  "name": "faulwinder",
+  "version": "0.1.0",
+  "description": "The lazy watch winder — nRF52840 firmware + Web Bluetooth config UI",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gen": "node shared/gen.mjs",
+    "build:firmware": "PATH=\"$PWD/tools/shim:$PATH\" arduino-cli compile --fqbn Seeeduino:nrf52:xiaonRF52840 firmware/faulwinder",
+    "serve": "python3 -m http.server -d webapp 8000"
+  }
+}
